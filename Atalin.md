@@ -2,26 +2,26 @@
 ```csharp
 pitchMils -= Core.Instance.Orientation.Pitch;
 
-                        if (Core.Instance.Calibrations.Down.Value < pitchMils && pitchMils < Core.Instance.Calibrations.Up.Value)
-                        {
-                            if (!Core.Instance.Motion.Elevation.Valid)
-                            {
-                                if (pitchMils == 0 && azimuthMils == 3200)
-                                {
+if (Core.Instance.Calibrations.Down.Value < pitchMils && pitchMils < Core.Instance.Calibrations.Up.Value)
+{
+    if (!Core.Instance.Motion.Elevation.Valid)
+    {
+        if (pitchMils == 0 && azimuthMils == 3200)
+        {
 
-                                }
-                                else
-                                {
-                                    Core.Instance.Position.Platform.Elevation = pitchMils;
-                                    Console.WriteLine("epcs el updated no move: " + Core.Instance.Position.Platform.Elevation);
-                                }
-                            }
-                            else if (Math.Round(pitchMils) == Math.Round(_elevationUpdated))
-                            {
-                                Core.Instance.Position.Platform.Elevation = pitchMils;
-                                Console.WriteLine("epcs el updated in move: " + Core.Instance.Position.Platform.Elevation);
-                            }
-                        }
+        }
+        else
+        {
+            Core.Instance.Position.Platform.Elevation = pitchMils;
+            Console.WriteLine("epcs el updated no move: " + Core.Instance.Position.Platform.Elevation);
+        }
+    }
+    else if (Math.Round(pitchMils) == Math.Round(_elevationUpdated))
+    {
+        Core.Instance.Position.Platform.Elevation = pitchMils;
+        Console.WriteLine("epcs el updated in move: " + Core.Instance.Position.Platform.Elevation);
+    }
+}
 
 ```
 
