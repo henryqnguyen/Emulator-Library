@@ -1,4 +1,31 @@
 
+```csharp
+pitchMils -= Core.Instance.Orientation.Pitch;
+
+                        if (Core.Instance.Calibrations.Down.Value < pitchMils && pitchMils < Core.Instance.Calibrations.Up.Value)
+                        {
+                            if (!Core.Instance.Motion.Elevation.Valid)
+                            {
+                                if (pitchMils == 0 && azimuthMils == 3200)
+                                {
+
+                                }
+                                else
+                                {
+                                    Core.Instance.Position.Platform.Elevation = pitchMils;
+                                    Console.WriteLine("epcs el updated no move: " + Core.Instance.Position.Platform.Elevation);
+                                }
+                            }
+                            else if (Math.Round(pitchMils) == Math.Round(_elevationUpdated))
+                            {
+                                Core.Instance.Position.Platform.Elevation = pitchMils;
+                                Console.WriteLine("epcs el updated in move: " + Core.Instance.Position.Platform.Elevation);
+                            }
+                        }
+
+```
+
+
 This code block in the Atalin class is responsible for updating the elevation of the platform based on the current pitch value received from the orientation sensor. Here is a detailed explanation of the code:
 
 pitchMils -= Core.Instance.Orientation.Pitch;: This line subtracts the current pitch value received from the orientation sensor from the stored pitchMils value. This gives the change in pitch since the last time this line was executed.
@@ -17,8 +44,3 @@ Console.WriteLine("epcs el updated no move: " + Core.Instance.Position.Platform.
 
 In summary, this code block updates the elevation value of the platform based on the current pitch value received from the orientation sensor, as long as it falls within the acceptable calibrated range and is not part of a motion command. It also prevents updating the elevation value if it has not changed since the last update.
 
-
-
-
-
-Regene
