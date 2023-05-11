@@ -2,7 +2,7 @@
 
 **Atalin.cs**
 
-Q1. Why converts to Earth before sending to atsd atalin emulator?
+Q1. Why converts Az to Earth before sending to atsd atalin emulator? Then Atalin sends back az to EPCS in platform postion.
 
 ```csharp
 float vehicleAz = (Position.ToEarthAzimuth(_azimuthUpdated) - Core.Instance.Orientation.Yaw + 9600) % 6400f;
